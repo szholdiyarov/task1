@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Task1</string>
+
+    <!-- New client activity -->
+    <string name="new_client_hint_first_name">Enter first name:</string>
+    <string name="new_client_hint_second_name">Enter second name:</string>
+    <string name="new_client_hint_number">Enter client telephone number:</string>
+    <string name="new_client_hint_address">Press here to choose your address</string>
+
+    <string name="save">Save</string>
+</resources>
