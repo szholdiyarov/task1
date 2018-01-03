@@ -7,20 +7,28 @@
     tools:context="com.example.task1.MainActivity">
 
     <android.support.v7.widget.RecyclerView
+        android:visibility="gone"
         android:id="@+id/recyclerViewClients"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/textViewNothingToShow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="@string/error_nothing_to_show" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/floatingActionButtonAddNewClient"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="16dp"
+        android:layout_alignParentEnd="true"
         android:layout_marginBottom="12dp"
-        app:backgroundTint="#E6B30D"
+        android:layout_marginEnd="16dp"
         android:src="@drawable/ic_action_add"
+        app:backgroundTint="#E6B30D"
         app:fabSize="normal" />
 
 

@@ -8,4 +8,14 @@
     <string name="new_client_hint_address">Press here to choose your address</string>
 
     <string name="save">Save</string>
+
+    <!-- Error -->
+    <string name="error_nothing_to_show">Nothing to show at the moment. \n Please add a new client.</string>
+    <string name="error_field_empty">Please enter all information. </string>
+
+    <!-- Client item layout -->
+    <string name="client_item_name">Name: %1$s %2$s</string>
+    <string name="client_item_phone">Phone: %1$s</string>
+    <string name="client_item_address">Address: %1$s</string>
+    <string name="client_item_uid"><b>UID</b>: %1$s</string>
 </resources>

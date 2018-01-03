@@ -1,10 +1,7 @@
 package com.example.task1
 
 import android.app.Application
-import android.arch.persistence.db.SupportSQLiteDatabase
 import android.arch.persistence.room.Room
-import android.arch.persistence.room.RoomDatabase
-import android.util.Log
 import com.example.task1.room.ThisDatabase
 
 /**

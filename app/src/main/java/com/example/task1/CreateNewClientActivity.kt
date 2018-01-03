@@ -1,32 +1,21 @@
 package com.example.task1
 
 import android.app.Activity
-import android.app.Application
-import android.app.Dialog
-import android.arch.persistence.db.SupportSQLiteDatabase
-import android.arch.persistence.room.Room
-import android.arch.persistence.room.RoomDatabase
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.util.Log
-import com.example.task1.models.Address
-import com.example.task1.models.Client
-import com.example.task1.room.ThisDatabase
-import com.google.android.gms.location.places.AutocompleteFilter
-import com.google.android.gms.location.places.ui.PlaceAutocomplete
-import com.google.android.gms.common.ConnectionResult
-import com.google.android.gms.common.GoogleApiAvailability
-import kotlinx.coroutines.experimental.async
-import java.io.File
 import android.location.Geocoder
+import android.os.Bundle
 import android.support.design.widget.TextInputEditText
+import android.support.v7.app.AppCompatActivity
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
+import com.example.task1.models.Address
+import com.example.task1.models.Client
+import com.google.android.gms.location.places.AutocompleteFilter
+import com.google.android.gms.location.places.ui.PlaceAutocomplete
 import kotlinx.android.synthetic.main.activity_new_client.*
 import java.util.*
-import java.nio.file.Files.size
 
 
 /**
@@ -34,6 +23,7 @@ import java.nio.file.Files.size
  */
 class CreateNewClientActivity : AppCompatActivity() {
     private val placeAutoCompleteRequestCode = 1
+    private val placePickerCountryCode = "DE" // Germany
     private var selectedAddress: Address? = null
 
     companion object {
@@ -45,9 +35,9 @@ class CreateNewClientActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_client)
-        val firstName = findViewById<TextInputEditText>(R.id.textInputEditTextFirstName)
-        val secondName = findViewById<TextInputEditText>(R.id.textInputEditTextSecondName)
-        val phoneNumber = findViewById<TextInputEditText>(R.id.autoCompleteTextViewPhoneNumber)
+        val firstNameTextView = findViewById<TextInputEditText>(R.id.textInputEditTextFirstName)
+        val secondNameTextView = findViewById<TextInputEditText>(R.id.textInputEditTextSecondName)
+        val phoneNumberTextView = findViewById<TextInputEditText>(R.id.autoCompleteTextViewPhoneNumber)
 
         val textViewAddress = findViewById<TextView>(R.id.textViewAddress)
         textViewAddress.setOnClickListener {
@@ -56,7 +46,14 @@ class CreateNewClientActivity : AppCompatActivity() {
 
         val buttonSave = findViewById<Button>(R.id.buttonSave)
         buttonSave.setOnClickListener {
-            save(firstName.text.toString(), secondName.text.toString(), phoneNumber.text.toString())
+            val firstName = firstNameTextView.text.toString()
+            val secondName = secondNameTextView.text.toString()
+            val phoneNumber = phoneNumberTextView.text.toString()
+            if (allFieldsValidated(firstName, secondName, phoneNumber)) {
+                save(firstName, secondName, phoneNumber)
+            } else {
+                showEmptyFieldError()
+            }
         }
 
     }
@@ -77,6 +74,10 @@ class CreateNewClientActivity : AppCompatActivity() {
         }
     }
 
+    private fun allFieldsValidated(name: String, secondName: String, phoneNumber: String): Boolean {
+        return name.isNotEmpty() && secondName.isNotEmpty() && phoneNumber.isNotEmpty() && selectedAddress != null
+    }
+
     private fun save(name: String, secondName: String, phoneNumber: String) {
         val dao = (application as ThisApplication).clientDatabase.clientDao()
         val client = Client(name, secondName, phoneNumber, selectedAddress!!)
@@ -86,10 +87,14 @@ class CreateNewClientActivity : AppCompatActivity() {
 
     private fun openCityPicker() {
         val typeFilter = AutocompleteFilter.Builder()
-                .setCountry("DE").setTypeFilter(AutocompleteFilter.TYPE_FILTER_ADDRESS)
+                .setCountry(placePickerCountryCode).setTypeFilter(AutocompleteFilter.TYPE_FILTER_ADDRESS)
                 .build()
         val intent = PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_FULLSCREEN).setFilter(typeFilter)
                 .build(this)
         startActivityForResult(intent, placeAutoCompleteRequestCode)
+    }
+
+    private fun showEmptyFieldError() {
+        Toast.makeText(this, getString(R.string.error_field_empty), Toast.LENGTH_LONG).show()
     }
 }

@@ -1,13 +1,8 @@
 package com.example.task1.room
 
-import android.arch.persistence.db.SupportSQLiteDatabase
-import android.arch.persistence.room.RoomDatabase
 import android.arch.persistence.room.Database
-import android.arch.persistence.room.Room
-import android.content.Context
-import com.example.task1.models.Address
+import android.arch.persistence.room.RoomDatabase
 import com.example.task1.models.Client
-import java.util.concurrent.Executors
 
 
 /**
