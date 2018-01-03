@@ -1,4 +1,4 @@
-package com.example.task1
+package com.example.task1.view_helpers
 
 import android.content.Context
 import android.os.Build
@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.example.task1.R
 import com.example.task1.models.Client
 
 /**

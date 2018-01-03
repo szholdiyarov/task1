@@ -1,4 +1,4 @@
-package com.example.task1
+package com.example.task1.views
 
 import android.app.Activity
 import android.content.Context
@@ -10,6 +10,8 @@ import android.support.v7.app.AppCompatActivity
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import com.example.task1.R
+import com.example.task1.ThisApplication
 import com.example.task1.models.Address
 import com.example.task1.models.Client
 import com.google.android.gms.location.places.AutocompleteFilter

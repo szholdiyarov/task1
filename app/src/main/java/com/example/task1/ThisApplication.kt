@@ -7,13 +7,12 @@ import com.example.task1.room.ThisDatabase
 /**
  * Created by user on 03/01/18.
  */
-class ThisApplication: Application(){
+class ThisApplication : Application() {
     lateinit var clientDatabase: ThisDatabase
+    private val databaseName = "task-1"
 
     override fun onCreate() {
         super.onCreate()
-
-        clientDatabase = Room.databaseBuilder(applicationContext,
-                ThisDatabase::class.java, "task-1").allowMainThreadQueries().build()
+        clientDatabase = Room.databaseBuilder(applicationContext, ThisDatabase::class.java, databaseName).allowMainThreadQueries().build()
     }
 }

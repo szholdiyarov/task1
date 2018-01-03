@@ -1,4 +1,4 @@
-package com.example.task1
+package com.example.task1.views
 
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
@@ -8,7 +8,11 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.TextView
+import com.example.task1.R
+import com.example.task1.ThisApplication
 import com.example.task1.models.Client
+import com.example.task1.view_helpers.ClientsAdapter
+import com.example.task1.view_helpers.ClientsDelegate
 
 
 class MainActivity : AppCompatActivity(), ClientsDelegate {
