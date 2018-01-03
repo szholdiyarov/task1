@@ -25,7 +25,7 @@ class ClientsAdapter(private val context: Context, private val clients: List<Cli
         holder.textViewName.text = context.resources.getString(R.string.client_item_name, client.firstName, client.secondName)
         holder.textViewPhoneNumber.text = context.resources.getString(R.string.client_item_phone, client.telNumber)
         holder.textViewAddress.text = context.resources.getString(R.string.client_item_address, client.address.street)
-        holder.textViewUid.text = context.resources.getString(R.string.client_item_guid, client.uid).toSpanned()
+        holder.textViewUid.text = context.resources.getString(R.string.client_item_uid, client.uid).toSpanned()
         holder.itemView.setOnLongClickListener {
             (context as ClientsDelegate).removeClient(clients[position])
             true
